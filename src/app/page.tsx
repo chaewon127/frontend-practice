@@ -1,69 +1,143 @@
-import Image from "next/image";
+import "tailwindcss";
+
+// src/app/page.tsx
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <div>
+      <div className="flex h-screen items-center justify-center">
+        <button
+          type="button"
+          className="mx-2 rounded-lg px-6 py-3 text-sm font-medium bg-blue-500 text-white hover:bg-blue-600"
+        >
+          Default
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-gray-300 text-gray-700 hover:bg-gray-400"
+        >
+          Alternative
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-gray-800 text-white hover:bg-gray-900"
+        >
+          Dark
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300"
+        >
+          Light
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-green-500 text-white hover:bg-green-600"
+        >
+          Green
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-red-500 text-white hover:bg-red-600"
+        >
+          Red
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-yellow-500 text-white hover:bg-yellow-600"
+        >
+          Yellow
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg px-6 py-3 text-sm font-medium bg-purple-500 text-white hover:bg-purple-600"
+        >
+          Purple
+        </button>
+      </div>
+
+      <div>
+        <div className="flex h-screen items-center justify-center">
+          <div className="max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+            <img
+              src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?q=80&w=2151&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div className="p-5">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                2024년 기술 동향
+              </h5>
+              <p className="text-gray-700 mb-3 font-normal">
+                최신 기술 동향에 대한 기사를 통해 혁신적인 아이디어와 트렌드를
+                탐구해보세요. 이 글에서는 인공지능과 머신러닝의 발전이 우리
+                생활에 미치는 영향을 다룹니다.
+              </p>
+              <button className="rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white">
+                더보기
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
+
+      <div>
+        <div className="flex h-screen items-center justify-center">
+          <form className="w-full max-w-sm bg-white rounded-lg border border-gray-200 p-6 shadow-md">
+            <div className="mb-5">
+              <label
+                htmlFor="email"
+                className="mb-2 block text-sm font-medium text-gray-900"
+              >
+                이메일
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                placeholder="abc@gmail.com"
+                required
+              />
+            </div>
+            <div className="mb-5">
+              <label
+                htmlFor="password"
+                className="mb-2 block text-sm font-medium text-gray-900"
+              >
+                비밀번호
+              </label>
+              <input
+                type="password"
+                id="password"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+                required
+              />
+            </div>
+            <div className="flex items-start mb-5">
+              <div className="flex items-center h-5">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  value=""
+                  className="h-4 w-4 rounded-sm border border-gray-300 bg-gray-50"
+                  required
+                />
+              </div>
+              <label
+                htmlFor="remember"
+                className="ml-2 text-sm font-medium text-gray-900"
+              >
+                로그인 상태 유지
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
