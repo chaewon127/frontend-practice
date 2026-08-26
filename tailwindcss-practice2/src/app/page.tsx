@@ -4,11 +4,11 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-100">
       {/* 헤더 섹션 */}
       <header className="container mx-auto px-4 py-6">
-        {/* 좌우 정렬 */}
-        <nav className="">
+        {/* flex items-center justify-between 적용 */}
+        <nav className="flex items-center justify-between">
           <div className="text-xl font-bold text-indigo-600">내 포트폴리오</div>
-          {/* 좌우 정렬 및 간격 */}
-          <ul className="">
+          {/* flex gap-6 적용 */}
+          <ul className="flex gap-6">
             <li>
               <a
                 href="#about"
@@ -38,8 +38,9 @@ export default function Home() {
       </header>
 
       {/* 히어로 섹션 */}
-      {/* 중앙 정렬 및 텍스트 가운데 정렬 */}
-      <section className="container mx-auto px-4 py-16">
+      {/* flex, flex-col, items-center로 중앙 정렬 */}
+      {/* text-center: 텍스트 가운데 정렬 */}
+      <section className="container mx-auto flex flex-col items-center px-4 py-16 text-center">
         <div className="mb-6 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-indigo-200">
           <span className="text-4xl">👋</span>
         </div>
@@ -60,15 +61,14 @@ export default function Home() {
         <h2 className="mb-12 text-center text-3xl font-bold text-gray-800">
           소개
         </h2>
-        {/* 작은 브라우저 사이즈: 1열 & md 이상: 2열 */}
-        <div className="">
+        {/* 1열 2열 */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="rounded-xl bg-white p-8 shadow-lg">
             <h3 className="mb-4 text-xl font-semibold text-indigo-600">
               내 스킬
             </h3>
-
-            {/* 너비가 작을 때, 벗어나지 않게 하기  */}
-            <div className="">
+            {/* flex-wrap 채우기 */}
+            <div className="flex flex-wrap gap-2">
               <span className="rounded-full bg-indigo-100 px-3 py-1 text-indigo-800">
                 HTML
               </span>
@@ -114,14 +114,21 @@ export default function Home() {
       {/* 프로젝트 섹션 */}
       <section
         id="projects"
+        // container: 크기 조정
+        // mx-auto: 가운데 정렬
+        // rounded-t-3xl: 위 모서리 둥글게
+        // bg-white: 배경색
+        // px-4 py-16: 안쪽 여백
+        // shadow-inner: 그림자 효과
         className="container mx-auto rounded-t-3xl bg-white px-4 py-16 shadow-inner"
       >
         <h2 className="mb-12 text-center text-3xl font-bold text-gray-800">
           프로젝트
         </h2>
-        {/* 기본: 1열 */}
-        {/* md 이상: 3열 */}
-        <div className="">
+        {/* grid-cols-1: 1열 */}
+        {/* gap-6: 요소 간격 */}
+        {/* md:grid-cols-3: 미디어 쿼리 조건 */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* 프로젝트 카드 1 */}
           <div className="group overflow-hidden rounded-xl bg-gray-50 shadow-lg transition-all hover:shadow-xl">
             <div className="flex h-48 items-center justify-center bg-indigo-200">
@@ -134,8 +141,7 @@ export default function Home() {
               <p className="mb-4 text-gray-600">
                 Next.js와 Tailwind CSS를 이용한 개인 포트폴리오 웹사이트입니다.
               </p>
-              {/* 너비가 작을 때, 벗어나지 않게 하기  */}
-              <div className="">
+              <div className="flex flex-wrap gap-2">
                 <span className="rounded bg-gray-200 px-2 py-1 text-xs">
                   Next.js
                 </span>
@@ -158,8 +164,7 @@ export default function Home() {
               <p className="mb-4 text-gray-600">
                 React를 이용한 간단한 할 일 관리 애플리케이션입니다.
               </p>
-              {/* 너비가 작을 때, 벗어나지 않게 하기  */}
-              <div className="">
+              <div className="flex flex-wrap gap-2">
                 <span className="rounded bg-gray-200 px-2 py-1 text-xs">
                   React
                 </span>
@@ -182,8 +187,7 @@ export default function Home() {
               <p className="mb-4 text-gray-600">
                 JavaScript와 날씨 API를 이용한 간단한 날씨 정보 웹사이트입니다.
               </p>
-              {/* 너비가 작을 때, 벗어나지 않게 하기  */}
-              <div className="">
+              <div className="flex flex-wrap gap-2">
                 <span className="rounded bg-gray-200 px-2 py-1 text-xs">
                   HTML
                 </span>
