@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
-@theme {
-  /* primary */
-  --color-primary: #0f172a;
-  --color-primary-foreground: #ffffff;
+/* 1단계: 라이트 모드 기본값 */
+:root {
+  --background: oklch(1 0 0);
+  /* TODO: foreground, card, card-foreground, muted-foreground, border 추가 */
+}
 
-  /* secondary */
-  --color-secondary: #f1f5f9;
-  --color-secondary-foreground: #0f172a;
+/* 2단계: 다크 모드에서 같은 토큰 덮어쓰기 */
+/* 참고: 다크모드 수업에서 배웠던 @custom-variant는 
+				dark: prefix를 .dark 클래스 기반으로 동작하게 할 때 사용합니다. */
+.dark {
+  --background: oklch(0.145 0 0);
+  /* TODO: 다크 모드 값 추가 */
+}
 
-  /* destructive */
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #ffffff;
-
-  /* ghost hover용 */
-  --color-muted: #f1f5f9;
-
-  /* outline border용 */
-  --color-border: #e2e8f0;
+/* 3단계: Tailwind 유틸리티와 연결 */
+@theme inline {
+  --color-background: var(--background);
+  /* TODO: 나머지 매핑 추가 */
 }
