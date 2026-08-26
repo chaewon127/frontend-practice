@@ -65,7 +65,9 @@ export default function ProductGrid() {
       <h2 className="mb-6 text-2xl font-bold">인기 상품</h2>
 
       {/* 상품 필터링 부분 */}
-      <div className="mb-6">
+      {/* mb-6: 아래 요소와의 간격 */}
+      {/* flex gap-2: 요소 간격 조정 */}
+      <div className="mb-6 flex gap-2">
         {/* rounded-md: 둥근 모서리 */}
         {/* bg-blue-500: 버튼 배경색 */}
         {/* px-4: 좌우 패딩 */}
@@ -85,9 +87,19 @@ export default function ProductGrid() {
       </div>
 
       {/* 상품 그리드 */}
-      <div className="">
+      {/* grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4: 그리드 레이아웃 설정 */}
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
-          <div key={product.id} className="">
+          <div
+            key={product.id}
+            // overflow-hidden: 요소 오버플로우 숨김
+            // rounded-lg: 둥근 모서리
+            // border: 테두리
+            // transition-shadow: 그림자 효과 전환
+            // hover:shadow-md: 마우스 오버 시 그림자 효과 추가
+            // duration-300: 300밀리초 동안 전환
+            className="overflow-hidden rounded-lg border transition-shadow hover:shadow-md duration-300"
+          >
             <Link href={`/products/${product.id}`}>
               {/* aspect-square: 정사각형 비율 */}
               <div className="aspect-square">
