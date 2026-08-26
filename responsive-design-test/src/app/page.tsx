@@ -18,14 +18,14 @@ export default async function Home() {
   return (
     <>
       {/* 데스크탑 버전 메뉴 */}
-      <div className="items-center gap-4">
+      <div className="hidden items-center gap-4 md:flex">
         <Link href="/">코드잇 단기심화</Link>
         <Link href="/bootcamp">부트캠프</Link>
         <Link href="/job-support">취업 지원</Link>
         <Link href="/blog">후기&블로그</Link>
       </div>
       {/* 모바일 버전 메뉴 */}
-      <div className="block">
+      <div className="block md:hidden">
         <Hamburger />
       </div>
     </>
