@@ -1,11 +1,36 @@
-// 실습 2 - 카드 나타나기
-export default function ShowUpExample() {
+// 실습 3 - 카드 뒤집기
+"use client";
+
+import { useState } from "react";
+
+export default function Home() {
+  // 1. 뒤집힌 상태 저장
+  const [isFlipped, setIsFlipped] = useState(false);
+
   return (
-    <div className="flex h-screen items-center justify-center gap-2">
-      <div className="animate-show-up h-96 w-72 rounded-lg border shadow-md"></div>
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="cursor-pointer">
+        <div className={`relative h-96 w-64`}>
+          <div className="absolute flex h-full w-full items-center justify-center rounded-xl bg-white p-4 shadow-lg">
+            <div>카드앞면</div>
+          </div>
+          <div className="absolute flex h-full w-full rotate-y-180 items-center justify-center rounded-xl bg-blue-500 p-4 text-white shadow-lg">
+            <div>카드뒷면</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
+// 실습 2 - 카드 나타나기
+// export default function ShowUpExample() {
+//   return (
+//     <div className="flex h-screen items-center justify-center gap-2">
+//       <div className="animate-show-up h-96 w-72 rounded-lg border shadow-md"></div>
+//     </div>
+//   );
+// }
 
 // 실습 1 - Tailwind CSS 기본 애니매이션
 // export default function Home() {
