@@ -9,7 +9,7 @@ export default function Home() {
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
-          className="hds-flight-icon--animation-loading"
+          className="hds-flight-icon--animation-loading animate-spin"
         >
           <g fill="#000000" fillRule="evenodd" clipRule="evenodd">
             <path
@@ -27,12 +27,12 @@ export default function Home() {
           알림을 확인하세요
         </button>
         <span className="absolute -top-1 -right-1 flex h-3 w-3">
-          <span className="absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
           <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
         </span>
       </div>
 
-      <div className="flex gap-2 border border-gray-300 p-4">
+      <div className="flex animate-pulse gap-2 border border-gray-300 p-4">
         <div className="size-10 rounded-full bg-gray-300"></div>
         <div className="flex flex-col gap-2">
           <div className="h-2 w-40 rounded-full bg-gray-300"></div>
@@ -40,7 +40,7 @@ export default function Home() {
         </div>
       </div>
 
-      <button className="rounded-full border border-gray-300 p-4">
+      <button className="animate-bounce rounded-full border border-gray-300 p-4">
         <svg
           className="size-6 text-gray-500"
           fill="none"
