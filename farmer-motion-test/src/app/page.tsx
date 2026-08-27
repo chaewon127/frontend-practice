@@ -2,15 +2,24 @@ import * as motion from "motion/react-client";
 
 export default function Home() {
   return (
-    <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="rounded-md border-none bg-blue-500 px-5 py-2.5 text-white"
-    >
+    <button className="rounded-md border-none bg-blue-500 px-5 py-2.5 text-white">
       마우스를 올려보세요!
-    </motion.button>
+    </button>
   );
 }
+
+// 실습 3 - 마우스 오버 시 버튼 확대/축소
+// export default function Home() {
+//   return (
+//     <motion.button
+//       whileHover={{ scale: 1.1 }}
+//       whileTap={{ scale: 0.9 }}
+//       className="rounded-md border-none bg-blue-500 px-5 py-2.5 text-white"
+//     >
+//       마우스를 올려보세요!
+//     </motion.button>
+//   );
+// }
 
 // 실습 2 - 왼쪽에서 슬라이드 인
 // export default function Home() {
