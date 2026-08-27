@@ -1,8 +1,8 @@
 // 실습 2 - 카드 나타나기
-export default function Home() {
+export default function ShowUpExample() {
   return (
     <div className="flex h-screen items-center justify-center gap-2">
-      <div className="h-96 w-72 rounded-lg border shadow-md"></div>
+      <div className="animate-show-up h-96 w-72 rounded-lg border shadow-md"></div>
     </div>
   );
 }
