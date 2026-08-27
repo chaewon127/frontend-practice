@@ -13,6 +13,8 @@ export default function Page() {
   );
 }
 
+// -----------------------------------
+
 // 실습 4 - Tailwind CSS로 만든 애니메이션을 farmer motion으로 변환
 // export default function Home() {
 //   return (
@@ -36,6 +38,8 @@ export default function Page() {
 //   );
 // }
 
+// -----------------------------------
+
 // 실습 3 - 마우스 오버 시 버튼 확대/축소
 // export default function Home() {
 //   return (
@@ -49,6 +53,8 @@ export default function Page() {
 //   );
 // }
 
+// -----------------------------------
+
 // 실습 2 - 왼쪽에서 슬라이드 인
 // export default function Home() {
 //   return (
@@ -61,6 +67,8 @@ export default function Page() {
 //     </motion.div>
 //   );
 // }
+
+// -----------------------------------
 
 // 실습 1 - 페이드인
 // export default function Home() {
