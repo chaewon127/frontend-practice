@@ -2,9 +2,9 @@ import * as motion from "motion/react-client";
 
 export default function Home() {
   return (
-    <button className="rounded-md border-none bg-blue-500 px-5 py-2.5 text-white">
-      마우스를 올려보세요!
-    </button>
+    <div className="flex h-screen items-center justify-center gap-2">
+      <div className="animate-show-up h-96 w-72 rounded-lg border shadow-md"></div>
+    </div>
   );
 }
 
