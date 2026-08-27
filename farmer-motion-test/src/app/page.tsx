@@ -1,27 +1,40 @@
 import * as motion from "motion/react-client";
+import Link from "next/link";
 
-// 실습 4 - Tailwind CSS로 만든 애니메이션을 farmer motion으로 변환
-export default function Home() {
+// 실습 5 - 페이지 트랜지션 애니메이션
+export default function Page() {
   return (
-    <div className="flex h-screen items-center justify-center gap-2">
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
-        className="h-96 w-72 rounded-lg border shadow-md"
-      ></motion.div>
+    <div>
+      <Link className="text-blue-500 underline" href="/about">
+        About으로
+      </Link>
+      {/* 코드 생략*/}
     </div>
   );
 }
+
+// 실습 4 - Tailwind CSS로 만든 애니메이션을 farmer motion으로 변환
+// export default function Home() {
+//   return (
+//     <div className="flex h-screen items-center justify-center gap-2">
+//       <motion.div
+//         initial={{
+//           opacity: 0,
+//           y: 20,
+//         }}
+//         animate={{
+//           opacity: 1,
+//           y: 0,
+//         }}
+//         transition={{
+//           duration: 0.5,
+//           ease: "easeInOut",
+//         }}
+//         className="h-96 w-72 rounded-lg border shadow-md"
+//       ></motion.div>
+//     </div>
+//   );
+// }
 
 // 실습 3 - 마우스 오버 시 버튼 확대/축소
 // export default function Home() {
