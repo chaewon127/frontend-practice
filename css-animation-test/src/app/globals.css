@@ -32,18 +32,50 @@ li {
 
 .imgSlide.original {
   /* animation 추가 */
+  /* 30s: 애니메이션 지속 시간 */
+  /* linear: 애니메이션 속도 곡선 (일정한 속도) */
+  /* infinite: 애니메이션 무한 반복 */
+  animation: slide01 30s linear infinite;
 }
 
 .imgSlide.clone {
   /* animation 추가 */
+  /* 30s: 애니메이션 지속 시간 */
+  /* linear: 애니메이션 속도 곡선 (일정한 속도) */
+  /* infinite: 애니메이션 무한 반복 */
+  animation: slide02 30s linear infinite;
 }
 
-/* original용  */
 @keyframes slide01 {
+  /* 시점별 이동 효과 */
+  /* 처음엔 정위치 */
+  /* 50%까지는 왼쪽으로 완전히 이동하여 안보이게 */
+  /* 50% 직후에 가장 오른쪽으로 이동하여 clone 이미지 오른쪽에 붙이기 */
+  /* 100%에서는 다시 정위치 */
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-/* clone용 */
 @keyframes slide02 {
+  /* 시점별 이동 효과 */
+  /* 오른쪽에 위치하며 화면에서는 보이지 않음 */
+  /* 100%에서는 왼쪽으로 이동하며 화면에 보이게 */
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
 }
 
 /* 실습 2 - 버튼 hover 시 배경색 변경 애니매이션 with transition */
