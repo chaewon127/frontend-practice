@@ -1,3 +1,4 @@
+// 실습 1 - intersection-observer API로 무한 스크롤 구현
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -22,6 +23,32 @@ export default function Home() {
     ]);
     setIsLoading(false);
   };
+
+  // IntersectionObserver로 대상 요소 감지
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // 요소 감지 시 콜백함수 실행
+        if (entries[0].isIntersecting) {
+          loadMoreItems();
+        }
+      },
+      {
+        threshold: 1,
+      },
+    );
+
+    const currentRef = targetRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   return (
     <div className="container mx-auto">
