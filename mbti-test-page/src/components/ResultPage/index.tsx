@@ -22,7 +22,7 @@ export default function ResultPage({ answers }: { answers: string[] }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="rounded-lg bg-white p-6 shadow-lg"
+        className="rounded-lg bg-white p-6 text-black shadow-lg"
       >
         {answers.map((answer, index) => (
           <m.p

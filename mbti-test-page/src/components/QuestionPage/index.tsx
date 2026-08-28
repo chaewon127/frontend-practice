@@ -49,7 +49,7 @@ export default function QuestionPage({
               scale: 0.98,
             }}
             onClick={() => onAnswer(option)}
-            className="w-full rounded-lg bg-white p-4 text-left shadow"
+            className="w-full rounded-lg bg-white p-4 text-black text-left shadow"
           >
             {option}
           </m.button>

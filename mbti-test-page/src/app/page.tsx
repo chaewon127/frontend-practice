@@ -36,7 +36,7 @@ export default function MBTITest() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex min-h-screen items-center justify-center">
       {currentStep === 0 && <StartPage onStart={handleStart} />}
       {currentStep === 1 && (
         <QuestionPage
