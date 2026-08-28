@@ -151,7 +151,7 @@ export const AnimatedProgressBar = ({ maxValue = 100, height = 12 }) => {
         );
 
         // 랜덤 값으로 시뮬레이션 (실제로는 API 응답 데이터를 사용)
-        const randomValue = Math.floor(Math.random() * 101); // 0 ~ 100 사이 랜덤 값;
+        const randomValue = Math.floor(Math.random() * 101);
         setValue(randomValue);
       } catch (error) {
         console.error("데이터를 가져오는 중 오류 발생:", error);
@@ -173,7 +173,18 @@ export const AnimatedProgressBar = ({ maxValue = 100, height = 12 }) => {
         className="w-full overflow-hidden rounded-full bg-gray-200"
         style={{ height: `${height}px` }}
       >
-        {!isLoading && <div className="h-full bg-blue-500" />}
+        {!isLoading && (
+          <motion.div
+            className="h-full bg-blue-500"
+            // 초기 width: 0 & 애니메이션 시작 시 width: `${percentage}%`
+            initial={{ width: 0 }}
+            animate={{ width: `${percentage}%` }}
+            transition={{
+              duration: 1.5,
+              ease: "easeOut",
+            }}
+          />
+        )}
       </div>
 
       {/* 로딩 및 값 표시 */}
@@ -181,9 +192,15 @@ export const AnimatedProgressBar = ({ maxValue = 100, height = 12 }) => {
         {isLoading ? (
           <div className="animate-pulse text-gray-500">데이터 로딩 중...</div>
         ) : (
-          <div className="font-medium text-blue-600">
+          <motion.div
+            // 애니메이션 시작 시 아래 10px 위치 및 안보이게
+            initial={{ opacity: 0, y: 10 }}
+            // 애니메이션 종료 시 위로 이동하면서 보이게
+            animate={{ opacity: 1, y: 0 }}
+            className="font-medium text-blue-600"
+          >
             {value} / {maxValue} ({percentage.toFixed(1)}%)
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
