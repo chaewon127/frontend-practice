@@ -48,26 +48,52 @@
 // 실습 2 - 스크롤 기반 랜딩 페이지 애니메이션 - Parallax 기법
 "use client";
 
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+
 export default function Home() {
+  const containerRef = useRef(null);
+
+  // 배경과 텍스트를 감싸는 부모를 기준으로 스크롤 감지
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    // 스크롤 진행률의 기준점 세우기
+    // start end는 타겟의 시작점(start)이 뷰포트(end)를 지나는 순간이 스크롤 진행률 0이라는 뜻
+    // end start는 타겟의 끝점(end)이 뷰포트(start)를 지나는 순간이 스크롤 진행률 1이라는 뜻
+    offset: ["start end", "end start"],
+  });
+
+  // 스크롤 진행도(0 -> 1)를 Y 위치(-300px -> 300px)로 변환
+  // 스크롤을 내릴 때 위(-300)에서 아래(300)로 살짝 끌어내림
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [-300, 300]);
+  // 원래 위치(0)에서 아래(300)로 끌어내려짐 -> 시각적으로 보일 수 있게 값 수정. 위(-600)에서 아래(600)로 이동
+  const textY = useTransform(scrollYProgress, [0, 1], [600, -600]);
+
   return (
     <main>
       <section className="h-dvh flex items-center justify-center bg-indigo-900 text-white">
         헤더
       </section>
-      <section className="h-dvh relative overflow-hidden">
+      <section ref={containerRef} className="h-dvh relative overflow-hidden">
         {/* 배경 레이어 - 느리게 이동 */}
-        <div
+        <motion.div
           className="absolute inset-0 bg-cover -z-1"
           style={{
+            y: backgroundY,
             backgroundImage:
               "url('https://images.unsplash.com/photo-1764957079188-149010d00e30?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
         />
 
         {/* 텍스트 레이어 - 다른 속도로 이동 */}
-        <h1 className="text-7xl text-center pt-96 text-black" style={{}}>
+        <motion.h1
+          className="text-7xl text-center pt-96 text-black"
+          style={{
+            y: textY,
+          }}
+        >
           패럴렉스 효과
-        </h1>
+        </motion.h1>
       </section>
       <footer className="h-dvh flex items-center justify-center bg-indigo-900 text-white">
         푸터
