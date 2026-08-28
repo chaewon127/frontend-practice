@@ -81,14 +81,16 @@
 // 실습 2 - react-intersection-observer 라이브러리로 무한 스크롤 수정
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const [items, setItems] = useState([...Array(10)].map((_, i) => i + 1));
   const [isLoading, setIsLoading] = useState(false);
 
-  // 감지할 요소에 연결할 ref
-  const targetRef = useRef<HTMLDivElement | null>(null);
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
 
   const loadMoreItems = async () => {
     setIsLoading(true);
@@ -104,31 +106,11 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  // IntersectionObserver로 대상 요소 감지
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // 요소 감지 시 콜백함수 실행
-        if (entries[0].isIntersecting) {
-          loadMoreItems();
-        }
-      },
-      {
-        threshold: 1,
-      },
-    );
-
-    const currentRef = targetRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+    if (inView) {
+      loadMoreItems();
     }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+  }, [inView]);
 
   return (
     <div className="container mx-auto">
@@ -140,7 +122,7 @@ export default function Home() {
         ))}
       </div>
       {/* 해당 div가 뷰포트에 다 보일 때 더 로드 */}
-      <div ref={targetRef} className="py-4 text-center">
+      <div ref={ref} className="py-4 text-center">
         {isLoading ? (
           <div className="flex items-center justify-center space-x-2">
             <div className="h-4 w-4 animate-pulse rounded-full bg-blue-500"></div>
