@@ -57,7 +57,9 @@ export default function SimpleSlideShow() {
   return (
     <div className="relative mx-auto w-full max-w-2xl">
       <div className="relative h-64 overflow-hidden">
-        <AnimatePresence>
+        {/* initial={false}: 첫 렌더링 시에는 애니메이션 적용 X */}
+        {/* mode="wait": 이전 컴포넌트의 exit 애니메이션이 완료된 후에 새 컴포넌트의 애니메이션이 시작 */}
+        <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={currentIndex}
             initial={{ x: 300, opacity: 0 }}
