@@ -34,7 +34,7 @@
 //         }
 //       },
 //       {
-//         threshold: 1,
+//         threshold: 1,     // amount : 요소가 뷰포트에 100% 보일 때 콜백함수 실행
 //       },
 //     );
 
@@ -106,6 +106,13 @@ export default function Home() {
       }
     },
   });
+
+  // useEffect는 첫 렌더링 이후에 실행되므로,
+  // loadMoreItems를 실행하면 내부에서 setState가 실행
+  // -> 재렌더링 12345678번 발생 가능
+
+  // onChange는 intersectionObserver의 콜백 내부에서 실행
+  //-> 브라우저 이벤트 콜백으로 동작하므로 useEffect 실행 시 브라우저 요소를 감지해야 setState 실행
 
   return (
     <div className="container mx-auto">
