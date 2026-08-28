@@ -9,17 +9,21 @@ export default function Home() {
   return (
     <>
       <button onClick={() => setIsOpen(true)}>모달 열기</button>
+      {/* AnimatePresence는 조건부 렌더링 로직 외부에 위치 */}
       <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed inset-0 flex items-center justify-center bg-black/50"
-        >
-          <div className="rounded-lg bg-white p-6">
-            <h2>모달 내용</h2>
-            <button onClick={() => setIsOpen(false)}>닫기</button>
-          </div>
-        </motion.div>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed inset-0 flex items-center justify-center bg-black/50"
+          >
+            <div className="rounded-lg bg-white p-6 text-black">
+              <h2>모달 내용</h2>
+              <button onClick={() => setIsOpen(false)}>닫기</button>
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );
