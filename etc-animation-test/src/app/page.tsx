@@ -1,6 +1,6 @@
 "use client";
-
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 export const WordChangeAnimation = ({
   prefix,
@@ -29,9 +29,24 @@ export const WordChangeAnimation = ({
     <div className="flex h-12 items-center overflow-hidden text-2xl">
       <span>{prefix}</span>
       <div className="relative mx-2 inline-block w-12 overflow-hidden">
-        <span className="inline-block font-bold text-blue-600">
-          {`${words[currentIndex]}`}
-        </span>
+        {/* popLayout: 사라질 때 그 단어가 차지하는 공간을 없애버리기 위함 */}
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            // 키가 달라지면 새로운 애니메이션 생성
+            key={currentIndex}
+            // 처음에는 아래 50px 위치 및 안보이게
+            initial={{ y: 50, opacity: 0 }}
+            // 애니메이션 시작 시 원래 위치 차지 및 나타나기
+            animate={{ y: 0, opacity: 1 }}
+            // 애니메이션 종료 시 위로 50px 이동하면서 사라짐
+            exit={{ y: -50, opacity: 0 }}
+            // 애니메이션 지속 시간
+            transition={{ duration: 0.5 }}
+            className="inline-block font-bold text-blue-600"
+          >
+            {`${words[currentIndex]}`}
+          </motion.span>
+        </AnimatePresence>
       </div>
       <span>{suffix}</span>
     </div>
