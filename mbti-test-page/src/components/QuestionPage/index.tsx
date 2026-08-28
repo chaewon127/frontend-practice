@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 
 interface QuestionPageProps {
   question: {
@@ -16,28 +16,43 @@ export default function QuestionPage({
 }: QuestionPageProps) {
   return (
     <div className="w-full max-w-2xl px-4">
-      <motion.h2
+      <m.h2
         initial={{ x: 100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{
+          duration: 0.5,
+        }}
         className="mb-8 text-center text-2xl font-bold"
       >
         {question.question}
-      </motion.h2>
+      </m.h2>
       <div className="space-y-4">
         {question.options.map((option, index) => (
-          <motion.button
+          <m.button
             key={index}
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            initial={{
+              y: 50,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              delay: index * 0.1,
+              duration: 0.5,
+            }}
+            whileHover={{
+              scale: 1.02,
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
             onClick={() => onAnswer(option)}
-            className="w-full rounded-lg bg-white p-4 text-black text-left shadow transition-shadow duration-500 hover:shadow-lg"
+            className="w-full rounded-lg bg-white p-4 text-left shadow"
           >
             {option}
-          </motion.button>
+          </m.button>
         ))}
       </div>
     </div>
