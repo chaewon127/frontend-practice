@@ -45,12 +45,6 @@ export default function SimpleSlideShow() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    // 0 => (0 + 1) % 5 === 1
-    // 1 => (1 + 1) % 5 === 2
-    // 2 => (2 + 1) % 5 === 3
-    // 3 => (3 + 1) % 5 === 4
-    // 4 => (4 + 1) % 5 === 0
-    // 5 => (5 + 1) % 5 === 1
     setCurrentIndex((prevIndex) => (prevIndex + 1) % SLIDES.length);
   };
 
@@ -65,8 +59,10 @@ export default function SimpleSlideShow() {
       <div className="relative h-64 overflow-hidden">
         <AnimatePresence>
           <motion.div
+            key={currentIndex}
             initial={{ x: 300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
             transition={{ duration: 0.5 }}
             className={`absolute h-full w-full ${SLIDES[currentIndex]}`}
           ></motion.div>
