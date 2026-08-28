@@ -31,8 +31,8 @@ export default function QuestionPage({
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => onAnswer(option)}
             className="w-full rounded-lg bg-white p-4 text-black text-left shadow transition-shadow duration-500 hover:shadow-lg"
           >
