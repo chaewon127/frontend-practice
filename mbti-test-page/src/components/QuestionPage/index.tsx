@@ -24,7 +24,7 @@ export default function QuestionPage({
           <motion.button
             key={index}
             onClick={() => onAnswer(option)}
-            className="w-full rounded-lg bg-white p-4 text-left shadow"
+            className="w-full rounded-lg bg-white p-4 text-black text-left  shadow"
           >
             {option}
           </motion.button>
