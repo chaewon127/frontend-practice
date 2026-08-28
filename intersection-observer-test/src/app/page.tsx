@@ -81,36 +81,31 @@
 // 실습 2 - react-intersection-observer 라이브러리로 무한 스크롤 수정
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const [items, setItems] = useState([...Array(10)].map((_, i) => i + 1));
   const [isLoading, setIsLoading] = useState(false);
 
-  const { ref, inView } = useInView({
-    threshold: 1,
-  });
-
   const loadMoreItems = async () => {
     setIsLoading(true);
-
-    // API 호출 가정
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
     setItems((prevItems) => [
       ...prevItems,
-      // 이전 item 개수 + 1 부터 10개 더하기
       ...[...Array(10)].map((_, i) => prevItems.length + i + 1),
     ]);
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    if (inView) {
-      loadMoreItems();
-    }
-  }, [inView]);
+  const { ref } = useInView({
+    threshold: 1,
+    onChange: (inView) => {
+      if (inView && !isLoading) {
+        loadMoreItems();
+      }
+    },
+  });
 
   return (
     <div className="container mx-auto">
@@ -121,7 +116,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-      {/* 해당 div가 뷰포트에 다 보일 때 더 로드 */}
       <div ref={ref} className="py-4 text-center">
         {isLoading ? (
           <div className="flex items-center justify-center space-x-2">
