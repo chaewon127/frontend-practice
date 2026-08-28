@@ -43,12 +43,15 @@ const SLIDES = [
 
 export default function SimpleSlideShow() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const nextSlide = () => {
+    setIsDisabled(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % SLIDES.length);
   };
 
   const prevSlide = () => {
+    setIsDisabled(true);
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + SLIDES.length) % SLIDES.length,
     );
@@ -59,7 +62,14 @@ export default function SimpleSlideShow() {
       <div className="relative h-64 overflow-hidden">
         {/* initial={false}: 첫 렌더링 시에는 애니메이션 적용 X */}
         {/* mode="wait": 이전 컴포넌트의 exit 애니메이션이 완료된 후에 새 컴포넌트의 애니메이션이 시작 */}
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence
+          initial={false}
+          mode="wait"
+          onExitComplete={() => {
+            // 버튼을 누를 수 있게 한다.
+            setIsDisabled(false);
+          }}
+        >
           <motion.div
             key={currentIndex}
             initial={{ x: 300, opacity: 0 }}
@@ -72,6 +82,7 @@ export default function SimpleSlideShow() {
       </div>
 
       <button
+        disabled={isDisabled}
         onClick={prevSlide}
         className="bg-opacity-50 absolute top-1/2 left-2 -translate-y-1/2 transform rounded-full bg-black p-2 text-white"
       >
@@ -79,6 +90,7 @@ export default function SimpleSlideShow() {
       </button>
 
       <button
+        disabled={isDisabled}
         onClick={nextSlide}
         className="bg-opacity-50 absolute top-1/2 right-2 -translate-y-1/2 transform rounded-full bg-black p-2 text-white"
       >
