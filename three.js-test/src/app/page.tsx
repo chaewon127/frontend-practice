@@ -84,7 +84,7 @@ export default function ThreeScene() {
 
   return (
     // 모델을 보여줄 캔버스 만들기
-    <div className="h-[500px] w-[500px]">
+    <div className="size-125">
       <canvas ref={canvasRef} width={500} height={500} />
     </div>
   );
