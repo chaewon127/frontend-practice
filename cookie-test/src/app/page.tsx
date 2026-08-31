@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const products = [
   { id: 1, name: "노트북" },
@@ -13,7 +14,12 @@ const products = [
 export default function Home() {
   const [recentProducts, setRecentProducts] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
-      // js-cookie를 이용하여 저장된 쿠키(최근 본 상품들)을 가져오세요.
+      const cookieValue = Cookies.get("recentProducts");
+      if (cookieValue) {
+        return JSON.parse(cookieValue);
+      } else {
+        return [];
+      }
     }
 
     return [];
@@ -25,7 +31,7 @@ export default function Home() {
       ...recentProducts.filter((name) => name !== productName),
     ];
     setRecentProducts(updated);
-    // js-cookie를 이용하여 여기에 쿠키를 추가하세요.
+    Cookies.set("recentProducts", JSON.stringify(updated));
   };
 
   return (
@@ -48,11 +54,17 @@ export default function Home() {
       <div className="fixed top-4 right-4 rounded bg-blue-500 p-4 text-white shadow-lg">
         <div className="mb-2 font-bold">최근 본 상품</div>
         <ul className="space-y-1">
-          {recentProducts.map((product, index) => (
-            <li key={index}>{product}</li>
-          ))}
+          {recentProducts.length > 0 &&
+            recentProducts.map((product, index) => (
+              <li key={index}>{product}</li>
+            ))}
         </ul>
       </div>
     </div>
   );
 }
+
+// js-cookie 라이브러리 장점
+// 1. API가 간단하고 직관적 - get, set, remove 등의 메서드
+// 2. 인코딩, 디코딩 자동 처리 - Cookie.set("name", "John: Doe")
+// 3. 다양한 옵션을 쉽게 설정할 수 있고, 실수 가능성을 줄여준다.
