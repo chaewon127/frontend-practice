@@ -66,14 +66,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const containerRef = useRef(null);
+  const fillBarRef = useRef(null);
 
-  useGSAP();
+  useGSAP(
+    () => {
+      // fillBarRef.current를 100% 높이로 변경
+      gsap.to(fillBarRef.current, {
+        height: "100%",
+        ease: "none", // 2. 스크롤과 1:1로 반응하기 위해 ease 제거
+        // containerRef.current가 화면에 보일 때, fillBarRef.current를 100% 높이로 변경
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top", // 요소(containerRef.current)의 상단(top)이 뷰포트의 상단(top)에 도달했을 때
+          end: "+=200%", // containerRef.current 높이의 200%를 더 스크롤할 때까지 애니메이션 실행
+          pin: true,
+          scrub: true, // 스크롤에 따라 애니메이션이 진행되도록 설정
+          markers: process.env.NODE_ENV === "development", // 디버깅용 도구
+        },
+      });
+    },
+    { scope: containerRef },
+  );
 
   return (
     <div>
       {/* 스크롤 확인용 상단 여백 */}
       <div className="h-[50vh] flex items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold">👇 아래로 스크롤해서 충전하세요</h1>
+        <h1 className="text-3xl font-bold text-black">
+          👇 아래로 스크롤해서 충전하세요
+        </h1>
       </div>
 
       {/* GSAP Pinning 영역 (화면에 꽉 차는 크기) */}
@@ -90,14 +111,17 @@ export default function Home() {
 
           {/* 배터리 내용물 (여기가 차오름) */}
           <div className="w-full h-full flex items-end">
-            <div className="w-full h-0 bg-green-500 rounded-lg"></div>
+            <div
+              ref={fillBarRef}
+              className="w-full h-0 bg-green-500 rounded-lg"
+            ></div>
           </div>
         </div>
       </div>
 
       {/* 스크롤 확인용 하단 여백 */}
       <div className="h-screen flex items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold">✅ 충전 완료!</h1>
+        <h1 className="text-3xl font-bold text-black">✅ 충전 완료!</h1>
       </div>
     </div>
   );
