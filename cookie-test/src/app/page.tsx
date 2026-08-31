@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
+
+const RecentProducts = dynamic(() => import("@/components/RecentProducts"), {
+  ssr: false,
+});
 
 const products = [
   { id: 1, name: "노트북" },
@@ -53,18 +58,8 @@ export default function Home() {
       </div>
       <div className="fixed top-4 right-4 rounded bg-blue-500 p-4 text-white shadow-lg">
         <div className="mb-2 font-bold">최근 본 상품</div>
-        <ul className="space-y-1">
-          {recentProducts.length > 0 &&
-            recentProducts.map((product, index) => (
-              <li key={index}>{product}</li>
-            ))}
-        </ul>
+        <RecentProducts recentProducts={recentProducts} />
       </div>
     </div>
   );
 }
-
-// js-cookie 라이브러리 장점
-// 1. API가 간단하고 직관적 - get, set, remove 등의 메서드
-// 2. 인코딩, 디코딩 자동 처리 - Cookie.set("name", "John: Doe")
-// 3. 다양한 옵션을 쉽게 설정할 수 있고, 실수 가능성을 줄여준다.
