@@ -21,6 +21,27 @@
 //   expect(calculateTotal(4000, 2, 0)).toBe(8000);
 // });
 
+// 실습 4 - 할인된 가격 계산
+const { calculateDiscountedPrice } = require("./calculator");
+
+test("20% 할인 적용 시 올바른 결과를 반환하는지 확인", () => {
+  expect(calculateDiscountedPrice(100, 20)).toBe(80);
+});
+
+test("유효한 입력에 대해 0보다 큰 숫자를 반환하는지 확인", () => {
+  expect(calculateDiscountedPrice(50, 10)).toBeGreaterThan(0);
+});
+
+test("원래 가격보다 작은 숫자를 반환하는지 확인", () => {
+  expect(calculateDiscountedPrice(200, 25)).toBeLessThan(200);
+});
+
+test("음수 할인에 대해 오류를 발생시키는지 확인", () => {
+  expect(() => calculateDiscountedPrice(100, -10)).toThrow(
+    "입력값이 유효하지 않습니다. 가격과 할인율은 0 이상이어야 하며, 할인율은 100 이하이어야 합니다.",
+  );
+});
+
 // 기억해야 하는 것
 // 1. test() 함수
 // 2. test() 함수 안에 expect() 함수

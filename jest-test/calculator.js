@@ -13,6 +13,7 @@
 
 // module.exports = { calculateTotal };
 
+// 실습 4 - 할인된 가격 계산
 function calculateDiscountedPrice(originalPrice, discountPercentage) {
   if (originalPrice < 0 || discountPercentage < 0 || discountPercentage > 100) {
     throw new Error(
