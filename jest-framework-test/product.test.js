@@ -15,10 +15,15 @@ test("createProduct 함수 테스트", () => {
 
   // 기본 속성 검증
   // 1. toHaveProperty를 사용하여 id가 "prod-123"인지 검증하세요
+  expect(product).toHaveProperty("id", "prod-123");
   // 2. toHaveProperty를 사용하여 name이 "스마트폰"인지 검증하세요
+  expect(product).toHaveProperty("name", "스마트폰");
   // 3. toHaveProperty를 사용하여 price가 1000000인지 검증하세요
+  expect(product).toHaveProperty("price", 1000000);
 
   // 중첩 속성 검증
   // 4. toHaveProperty를 사용하여 category.id가 "cat-1"인지 검증하세요
+  expect(product).toHaveProperty("category.id", "cat-1");
   // 5. toHaveProperty를 사용하여 category.name이 "전자기기"인지 검증하세요
+  expect(product).toHaveProperty("category.name", "전자기기");
 });
