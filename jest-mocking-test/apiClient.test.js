@@ -1,10 +1,13 @@
 // 실습 1 - 모킹 함수(jest.fn)와 프로미스 반환값 모킹 (mockResolvedValue)
 // 실습 2 - 함수의 호출 정보를 확인하는 함수 (toHaveBeenCalled…) & 리팩토링 (beforeEach, mockClear)
+// 실습 3 - 테스트 코드 리팩토링 & beforeEach
 const { fetchData } = require("./apiClient");
 
 describe("apiClient.js 테스트", () => {
+  // 재사용을 위해 한 번 만듦
+  const callback = jest.fn();
+
   test("API 호출 후 데이터 포맷이 올바르게 되는지 확인", async () => {
-    // Arrange
     global.fetch = jest.fn().mockResolvedValue({
       ok: true, // fetch가 성공적으로 호출되었음을 나타냄
       json: jest.fn().mockResolvedValue({
@@ -17,6 +20,7 @@ describe("apiClient.js 테스트", () => {
         },
       }),
     });
+    // Arrange
     const url = "https://jsonplaceholder.typicode.com/users/1";
 
     // Act
@@ -48,9 +52,10 @@ describe("apiClient.js 테스트", () => {
     // Arrange
     // 여기서도 URL을 자유롭게 수정해도 괜찮습니다.
     const url = "https://api.example.com/user/1";
-    const callback = jest.fn();
+    // const callback = jest.fn();
 
     // Act
+    // callback 1회 실행
     await fetchData(url, callback);
 
     // Assert
@@ -74,9 +79,10 @@ describe("apiClient.js 테스트", () => {
 
     // Arrange
     const url = "https://api.example.com/user/1";
-    const callback = jest.fn();
+    // const callback = jest.fn();
 
     // Act
+    // callback 2회 실행
     await fetchData(url, callback);
 
     // Assert
@@ -105,12 +111,42 @@ describe("apiClient.js 테스트", () => {
 
     // Arrange
     const url = "https://api.example.com/user/1";
-    const callback = jest.fn();
+    // const callback = jest.fn();
 
     // Act
+    // callback 3회 실행
     await fetchData(url, callback);
 
     // Assert
     expect(callback).toHaveBeenCalledTimes(1);
+  });
+
+  test("callback이 제공되지 않은 경우 callback 함수가 호출되지 않는지 확인", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue({
+        id: 1,
+        name: "김철수",
+        address: {
+          street: "테스트 거리",
+          suite: "테스트 호수",
+          city: "서울",
+        },
+      }),
+    });
+
+    // Arrange
+    const url = "https://api.example.com/user/1";
+    // const callback = jest.fn();
+
+    // Act
+    // callback 함수 전달 X
+    await fetchData(url);
+
+    // Assert
+    // 0번 호출되었는지 확인
+    expect(callback).toHaveBeenCalledTimes(0);
+    // 또는 호출이 되지 않았는지 확인
+    expect(callback).not.toHaveBeenCalled();
   });
 });
