@@ -13,6 +13,7 @@
 
 // 실습 3-1 비동기 테스트 연습 - async/await 방식 검증
 // 실습 3-2 비동기 테스트 연습 - Promise 방식 검증
+// 실습 3-3 비동기 테스트 연습 - resolves, rejects Matcher 사용 검증
 async function fetchUserData(userId) {
   try {
     const response = await fetch(`https://api.example.com/users/${userId}`);
