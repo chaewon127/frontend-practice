@@ -45,6 +45,20 @@ test("expect.objectContaining 사용 예제", () => {
 
   // expect.objectContaining을 사용하여 부분 객체 검증
   // 1. product가 id와 name 속성을 포함하는지 검증하세요
+  expect(product).toEqual(
+    expect.objectContaining({
+      id: "prod-456",
+      name: "노트북",
+    }),
+  );
 
   // 2. product가 category 속성을 포함하고, category 속성이 id와 name 속성을 포함하는지 검증하세요
+  expect(product).toEqual(
+    expect.objectContaining({
+      category: expect.objectContaining({
+        id: "cat-2",
+        name: "컴퓨터",
+      }),
+    }),
+  );
 });
