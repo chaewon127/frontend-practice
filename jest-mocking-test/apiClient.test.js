@@ -57,4 +57,35 @@ describe("apiClient.js 테스트", () => {
     // 가짜 함수인 callback이 호출되었는지 확인
     expect(callback).toHaveBeenCalled();
   });
+
+  test("callback 함수가 포멧된 데이터를 인자로 가지고 호출되는지 확인", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue({
+        id: 1,
+        name: "김철수",
+        address: {
+          street: "테스트 거리",
+          suite: "테스트 호수",
+          city: "서울",
+        },
+      }),
+    });
+
+    // Arrange
+    const url = "https://api.example.com/user/1";
+    const callback = jest.fn();
+
+    // Act
+    await fetchData(url, callback);
+
+    // Assert
+    // toHaveBeenCalled는 호출 여부만 확인
+    // toHaveBeenCalledWith는 호출된 인자를 확인
+    expect(callback).toHaveBeenCalledWith({
+      userId: 1,
+      formattedName: "김철수",
+      address: "테스트 거리 테스트 호수 서울",
+    });
+  });
 });
