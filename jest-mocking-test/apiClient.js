@@ -2,17 +2,14 @@
 const fetchData = async (url, callback) => {
   try {
     // 1. API 호출
-    const response = await fetch(url);
-    const rawData = await response.json();
-    console.log({ rawData });
-
+    const response = await fetch(url); // 이 부분을 모킹할 예정
+    const rawData = await response.json(); // 여기에서 에러
     // 2. 데이터 포맷 - 프론트엔드에서 사용하기 좋은 형태로 변환
     const formattedData = {
       userId: rawData.id,
       formattedName: rawData.name.toUpperCase(),
       address: `${rawData.address.street} ${rawData.address.suite} ${rawData.address.city}`,
     };
-
     // 3. 추가적인 작업이 필요한 경우 callback 함수 실행
     if (callback && typeof callback === "function") {
       // 콜백 함수가 제공되면 호출
