@@ -27,5 +27,5 @@ function processPayment(amount, currency = "KRW", method = "card") {
 
 module.exports = { processPayment };
 
-// 아래의 주석을 풀고 실행하면 로그 파일이 생성됩니다.
-processPayment(10000, "KRW", "잘못된 결제 방식");
+// 아래의 주석을 풀고 실행하면 로그 파일이 생성됩니다. -> node payment.js
+// processPayment(10000, "KRW", "잘못된 결제 방식");
