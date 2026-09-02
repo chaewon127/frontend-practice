@@ -27,3 +27,24 @@ test("createProduct 함수 테스트", () => {
   // 5. toHaveProperty를 사용하여 category.name이 "전자기기"인지 검증하세요
   expect(product).toHaveProperty("category.name", "전자기기");
 });
+
+//-----------------------------------------------------
+
+// 실습 2-2 jest matcher 연습 - expect.objectContaining 사용법
+test("expect.objectContaining 사용 예제", () => {
+  const product = createProduct({
+    id: "prod-456",
+    name: "노트북",
+    price: 2000000,
+    category: {
+      id: "cat-2",
+      name: "컴퓨터",
+    },
+    tags: ["가전", "컴퓨터", "신상품"],
+  });
+
+  // expect.objectContaining을 사용하여 부분 객체 검증
+  // 1. product가 id와 name 속성을 포함하는지 검증하세요
+
+  // 2. product가 category 속성을 포함하고, category 속성이 id와 name 속성을 포함하는지 검증하세요
+});

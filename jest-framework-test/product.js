@@ -1,4 +1,5 @@
 // 실습 2-1 jest matcher 연습 - toHaveProperty 사용법
+// 실습 2-2 jest matcher 연습 - expect.objectContaining 사용법
 function createProduct(data) {
   return {
     id: data.id || "기본 id",
