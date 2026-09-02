@@ -1,11 +1,17 @@
 // 실습 1 - 모킹 함수(jest.fn)와 프로미스 반환값 모킹 (mockResolvedValue)
 // 실습 2 - 함수의 호출 정보를 확인하는 함수 (toHaveBeenCalled…) & 리팩토링 (beforeEach, mockClear)
 // 실습 3 - 테스트 코드 리팩토링 & beforeEach
+
+// beforeEach와 mockClear 메서드를 활용하는 방법
 const { fetchData } = require("./apiClient");
 
 describe("apiClient.js 테스트", () => {
-  // 재사용을 위해 한 번 만듦
   const callback = jest.fn();
+
+  beforeEach(() => {
+    callback.mockClear(); // callback 함수의 호출 기록을 초기화
+    // jest.clearAllMocks(); // 모든 mock의 호출 기록을 초기화
+  });
 
   test("API 호출 후 데이터 포맷이 올바르게 되는지 확인", async () => {
     global.fetch = jest.fn().mockResolvedValue({
@@ -55,7 +61,6 @@ describe("apiClient.js 테스트", () => {
     // const callback = jest.fn();
 
     // Act
-    // callback 1회 실행
     await fetchData(url, callback);
 
     // Assert
@@ -82,7 +87,6 @@ describe("apiClient.js 테스트", () => {
     // const callback = jest.fn();
 
     // Act
-    // callback 2회 실행
     await fetchData(url, callback);
 
     // Assert
@@ -114,7 +118,6 @@ describe("apiClient.js 테스트", () => {
     // const callback = jest.fn();
 
     // Act
-    // callback 3회 실행
     await fetchData(url, callback);
 
     // Assert
