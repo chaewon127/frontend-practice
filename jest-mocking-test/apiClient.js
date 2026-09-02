@@ -1,3 +1,4 @@
+// 실습 1 - 모킹 함수(jest.fn)와 프로미스 반환값 모킹 (mockResolvedValue)
 // API 호출 + 데이터 포맷 + 콜백으로 데이터 전달
 const fetchData = async (url, callback) => {
   try {
