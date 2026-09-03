@@ -1,40 +1,64 @@
+const PRODUCT_DISCOUNTS = [
+  { minPrice: 200000, rate: 0.2 },
+  { minPrice: 100000, rate: 0.1 },
+  { minPrice: 50000, rate: 0.05 },
+];
+
+const GRADE_DISCOUNTS = {
+  normal: 0,
+  silver: 0.02,
+  gold: 0.05,
+  vip: 0.1,
+};
+
+function applyProductDiscount(price) {
+  const discount = PRODUCT_DISCOUNTS.find(({ minPrice }) => price >= minPrice);
+
+  if (!discount) {
+    return price;
+  }
+
+  return price * (1 - discount.rate);
+}
+
+function applyGradeDiscount(price, grade) {
+  const discountRate = GRADE_DISCOUNTS[grade] ?? 0;
+
+  return price * (1 - discountRate);
+}
+
+function applyCoupon(price, coupon) {
+  if (!coupon) {
+    return price;
+  }
+
+  if (coupon.type === "fixed") {
+    return price - coupon.value;
+  }
+
+  if (coupon.type === "percent") {
+    return price * (1 - coupon.value / 100);
+  }
+
+  return price;
+}
+
 function calculatePrice(price, grade, coupon) {
   const originalPrice = price;
 
-  // 1. 상품 가격 할인
-  if (price >= 200000) {
-    price *= 0.8;
-  } else if (price >= 100000) {
-    price *= 0.9;
-  } else if (price >= 50000) {
-    price *= 0.95;
-  }
+  // 상품 가격 할인
+  price = applyProductDiscount(price);
 
-  // 2. 회원 등급 할인
-  const gradeDiscount = {
-    normal: 0,
-    silver: 0.02,
-    gold: 0.05,
-    vip: 0.1,
-  };
+  // 회원 등급 할인
+  price = applyGradeDiscount(price, grade);
 
-  price *= 1 - (gradeDiscount[grade] ?? 0);
+  // 쿠폰 할인
+  price = applyCoupon(price, coupon);
 
-  // 3. 쿠폰 할인
-  if (coupon) {
-    if (coupon.type === "fixed") {
-      price -= coupon.value;
-    } else if (coupon.type === "percent") {
-      price *= 1 - coupon.value / 100;
-    }
-  }
-
-  // 4. 원래 가격의 50% 이하로 내려가지 않도록 제한
+  // 최종 가격은 원래 가격의 50% 미만으로 내려갈 수 없음
   const minimumPrice = originalPrice * 0.5;
 
-  price = Math.max(price, minimumPrice);
-
-  return price;
+  return Math.max(price, minimumPrice);
 }
 
 module.exports = { calculatePrice };
