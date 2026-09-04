@@ -14,24 +14,32 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("http://localhost:4000/posts");
+
       if (!response.ok) {
         throw new Error("에러 발생");
       }
+
       const posts = await response.json();
       setData(posts);
     };
+
     fetchData();
   }, []);
+
   return (
-    <ul>
-      {data.map((item) => (
-        <li key={item.id} className="border p-4">
-          <h3 className="font-bold">
-            {item.id}: {item.title}
-          </h3>
-          <p>{item.body}</p>
-        </li>
-      ))}
-    </ul>
+    <main>
+      <h1>MSW 기본 세팅 연습</h1>
+
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            <h2>
+              {item.id}: {item.title}
+            </h2>
+            <p>{item.body}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
