@@ -8,19 +8,19 @@ type Post = {
   body: string;
 };
 
-export default function Home() {
-  const [data, setData] = useState<Post[]>([]);
+export default function PostDetailPage() {
+  const [data, setData] = useState<Post | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:4000/posts");
+      const response = await fetch("http://localhost:4000/posts/1");
 
       if (!response.ok) {
-        throw new Error("에러 발생");
+        throw new Error("게시글 상세 데이터를 불러오지 못했습니다.");
       }
 
-      const posts = await response.json();
-      setData(posts);
+      const post = await response.json();
+      setData(post);
     };
 
     fetchData();
@@ -28,18 +28,16 @@ export default function Home() {
 
   return (
     <main>
-      <h1>MSW 기본 세팅 연습</h1>
+      <h1>게시글 상세</h1>
 
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>
-            <h2>
-              {item.id}: {item.title}
-            </h2>
-            <p>{item.body}</p>
-          </li>
-        ))}
-      </ul>
+      {data && (
+        <article>
+          <h2>
+            {data.id}: {data.title}
+          </h2>
+          <p>{data.body}</p>
+        </article>
+      )}
     </main>
   );
 }
