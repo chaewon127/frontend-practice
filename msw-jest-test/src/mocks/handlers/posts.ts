@@ -1,3 +1,5 @@
+// posts API 요청을 가로채서 가짜 응답을 반환하는 MSW 핸들러 파일입니다.
+
 import { http, HttpResponse } from "msw";
 
 export const postsHandlers = [
