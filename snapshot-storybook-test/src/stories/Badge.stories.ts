@@ -65,3 +65,11 @@ export const Blue: Story = {
     children: "배지내용",
   },
 };
+
+export const Green: Story = {
+  args: {
+    size: "md",
+    colorPalette: "green",
+    children: "배지내용",
+  },
+};
