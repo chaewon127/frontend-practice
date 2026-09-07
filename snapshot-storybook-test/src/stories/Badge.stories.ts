@@ -14,15 +14,54 @@ const meta = {
   tags: ["autodocs"],
 } satisfies Meta<typeof Badge>;
 
-// meta 내보내기
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// 스토리 작성
 export const Default: Story = {
-  // props 값 입력
   args: {
+    size: "md",
+    colorPalette: "gray",
     children: "배지 내용",
+  },
+};
+
+export const XSmall: Story = {
+  args: {
+    size: "xs",
+    colorPalette: "gray",
+    children: "배지 내용",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "sm",
+    colorPalette: "gray",
+    children: "배지 내용",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    colorPalette: "gray",
+    children: "배지 내용",
+  },
+};
+
+export const Red: Story = {
+  args: {
+    size: "md",
+    colorPalette: "red",
+    children: "배지내용",
+  },
+};
+
+export const Blue: Story = {
+  args: {
+    size: "md",
+    colorPalette: "blue",
+    children: "배지내용",
   },
 };
