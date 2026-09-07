@@ -2,7 +2,9 @@
 
 exports[`Button 컴포넌트가 올바르게 렌더링됩니다 1`] = `
 <div>
-  <button>
+  <button
+    class="bg-red-500"
+  >
     클릭하세요
   </button>
 </div>
